@@ -44,7 +44,7 @@ const selectionResistors = (vOut, vRef) => {
   })
 
   let refVoltageFeedBack = await new Promise(resolve => {
-    rl.question("Референсное напряжение: ", resolve)
+    rl.question("Напряжение обратной связи: ", resolve)
   })
 
   selectionResistors (outputVoltage, refVoltageFeedBack)
@@ -54,5 +54,5 @@ const selectionResistors = (vOut, vRef) => {
   })
 
   rl.close()
-  
+
 })()
