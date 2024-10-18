@@ -18,16 +18,24 @@ const selectionResistors = (vOut, vRef) => {
         return;
       }
       let stringValues = contents.split('\n');
-      let arrValues = [];
+      let numberValuel = [];
       stringValues.forEach(function (item, i, arr) {
-        arrValues.push(parseFloat(item, 10));
+        if (item.includes("mΩ")) {
+          numberValuel.push(parseFloat(item, 10)/1000);
+        } else if (item.includes("kΩ")) {
+          numberValuel.push(parseFloat(item, 10)*1000);
+        } else if (item.includes("MΩ")) {
+          numberValuel.push(parseFloat(item, 10)*1000000);
+        } else if (item.includes("Ω")) {
+          numberValuel.push(parseFloat(item, 10))
+        }
       })
-      arrValues.forEach(function (item, i, arr) {
+      numberValuel.forEach(function (item, i, arr) {
         let r1 = item
         let r2 = item * coefficient
-        arrValues.forEach(function (item, i, arr) {
+        numberValuel.forEach(function (item, j, arr) {
           if (r2 === item) {
-            console.log("r1: " + r1 + " r2: " + r2 + '\n')
+            console.log("r1: " + stringValues[i] + " r2: " + stringValues[j] + '\n')
           }
         })
       })
